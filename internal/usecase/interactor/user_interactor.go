@@ -36,6 +36,7 @@ func (useCase UserUseCaseInteractor) AddUser(data input.UserAddInputData, ctx do
 	// Userエンティティを作成
 	user, err := useCase.userFactory.NewUser(data.Name, data.Role)
 	if err != nil {
+		// FIXME エラーハンドリング
 		panic(err)
 	}
 
