@@ -16,19 +16,19 @@ type UserController interface {
 }
 
 type UserControllerImpl struct {
-	service inputboundary.UserUseCase
+	useCase inputboundary.UserUseCase
 }
 
 // コンストラクタ
-func NewUserController(service inputboundary.UserUseCase) UserController {
+func NewUserController(useCase inputboundary.UserUseCase) UserController {
 	return UserControllerImpl{
-		service: service,
+		useCase: useCase,
 	}
 }
 
 // ユーザ作成
-func (con UserControllerImpl) CreateUser(ctx domain.Context) {
+func (controller UserControllerImpl) CreateUser(ctx domain.Context) {
 	data := input.UserAddInputData{}
 	ctx.Bind(&data)
-	con.service.AddUser(data, ctx)
+	controller.useCase.AddUser(data, ctx)
 }
